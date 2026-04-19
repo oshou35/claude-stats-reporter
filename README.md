@@ -62,24 +62,39 @@
 #### macOS / Linux
 
 ```bash
-git clone <このリポジトリの URL>
-cd claude-stats-reporter
-bash setup.sh
+curl -sL https://raw.githubusercontent.com/oshou35/claude-stats-reporter/main/install.sh | bash
 ```
-
-対話形式で以下を入力:
-- **表示名**: ランキングに表示される名前（例: `taro`）
-- **GAS URL**: Step 1-2 でコピーした URL
 
 #### Windows
 
 PowerShell を **管理者として** 開き:
 
 ```powershell
-git clone <このリポジトリの URL>
+irm https://raw.githubusercontent.com/oshou35/claude-stats-reporter/main/install.ps1 | iex
+```
+
+対話形式で以下を入力:
+- **表示名**: ランキングに表示される名前（例: `taro`）
+- **GAS URL**: Step 1-2 でコピーした URL
+
+<details>
+<summary>git clone 方式（代替）</summary>
+
+```bash
+# macOS / Linux
+git clone https://github.com/oshou35/claude-stats-reporter.git
+cd claude-stats-reporter
+bash setup.sh
+```
+
+```powershell
+# Windows（管理者 PowerShell）
+git clone https://github.com/oshou35/claude-stats-reporter.git
 cd claude-stats-reporter
 powershell -ExecutionPolicy Bypass -File setup.ps1
 ```
+
+</details>
 
 ### 動作確認
 
