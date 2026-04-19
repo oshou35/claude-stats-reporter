@@ -209,6 +209,18 @@ Register-ScheduledTask `
 Write-Host "タスクスケジューラに登録しました（毎日 9:30 に自動実行）"
 
 Write-Host ""
+Write-Host "=== テスト送信 ===" -ForegroundColor Cyan
+Write-Host ""
+& powershell -NoProfile -ExecutionPolicy Bypass -File "$installDir\report.ps1"
+$result = Get-Content $logFile -Tail 1 -ErrorAction SilentlyContinue
+if ($result -match "OK:") {
+    Write-Host "OK: テスト送信に成功しました" -ForegroundColor Green
+} else {
+    Write-Host "ERROR: テスト送信に失敗しました" -ForegroundColor Red
+    Write-Host "ログ: $result"
+}
+
+Write-Host ""
 Write-Host "=== セットアップ完了 ===" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "手動で実行する場合:"

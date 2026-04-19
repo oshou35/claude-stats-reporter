@@ -212,6 +212,18 @@ PLIST
 fi
 
 echo ""
+echo "=== テスト送信 ==="
+echo ""
+bash "$INSTALL_DIR/report.sh"
+RESULT=$(tail -1 "$INSTALL_DIR/last_run.log" 2>/dev/null || echo "")
+if [[ "$RESULT" == *"OK:"* ]]; then
+    echo "OK: テスト送信に成功しました"
+else
+    echo "ERROR: テスト送信に失敗しました"
+    echo "ログ: $RESULT"
+fi
+
+echo ""
 echo "=== セットアップ完了 ==="
 echo ""
 echo "手動で実行する場合:"
