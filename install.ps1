@@ -4,6 +4,7 @@ $ErrorActionPreference = "Stop"
 
 $installDir = Join-Path $env:USERPROFILE ".claude-stats-reporter"
 $taskName = "ClaudeCodeStatsReporter"
+$endpointUrl = "https://script.google.com/macros/s/AKfycbw5wNq1UEzjpQSiMn7s50y5vcbKbI9HHsH8IV8vErvrIFx27tq91IMe_OMQ3QuqIvfDww/exec"
 
 Write-Host "=== Claude Code Stats Reporter セットアップ ===" -ForegroundColor Cyan
 Write-Host ""
@@ -25,15 +26,7 @@ if ([string]::IsNullOrWhiteSpace($inputUsername)) {
     return
 }
 
-# ENDPOINT_URL の入力
-Write-Host ""
-Write-Host "GAS のウェブアプリ URL を入力してください。"
-Write-Host "（Apps Script > デプロイ > ウェブアプリ で取得できます）"
-$inputEndpoint = Read-Host "URL"
-if ([string]::IsNullOrWhiteSpace($inputEndpoint)) {
-    Write-Host "エラー: URL は必須です。" -ForegroundColor Red
-    return
-}
+$inputEndpoint = $endpointUrl
 
 # インストールディレクトリ作成
 New-Item -ItemType Directory -Path $installDir -Force | Out-Null

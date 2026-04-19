@@ -6,6 +6,7 @@ set -euo pipefail
 INSTALL_DIR="$HOME/.claude-stats-reporter"
 PLIST_NAME="com.llm-monitor.claude-stats"
 PLIST_PATH="$HOME/Library/LaunchAgents/${PLIST_NAME}.plist"
+ENDPOINT_URL="https://script.google.com/macros/s/AKfycbw5wNq1UEzjpQSiMn7s50y5vcbKbI9HHsH8IV8vErvrIFx27tq91IMe_OMQ3QuqIvfDww/exec"
 
 echo "=== Claude Code Stats Reporter セットアップ ==="
 echo ""
@@ -27,15 +28,7 @@ if [[ -z "$input_username" ]]; then
     exit 1
 fi
 
-# ENDPOINT_URL の入力
-echo ""
-echo "GAS のウェブアプリ URL を入力してください。"
-echo "（Apps Script > デプロイ > ウェブアプリ で取得できます）"
-read -rp "URL: " input_endpoint
-if [[ -z "$input_endpoint" ]]; then
-    echo "エラー: URL は必須です。"
-    exit 1
-fi
+input_endpoint="$ENDPOINT_URL"
 
 # インストールディレクトリ作成
 mkdir -p "$INSTALL_DIR"
