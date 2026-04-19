@@ -205,6 +205,7 @@ Write-Host ""
 Write-Host "=== テスト送信 ===" -ForegroundColor Cyan
 Write-Host ""
 & powershell -NoProfile -ExecutionPolicy Bypass -File "$installDir\report.ps1"
+$logFile = Join-Path $installDir "last_run.log"
 $result = Get-Content $logFile -Tail 1 -ErrorAction SilentlyContinue
 if ($result -match "OK:") {
     Write-Host "OK: テスト送信に成功しました" -ForegroundColor Green
